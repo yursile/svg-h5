@@ -1,97 +1,87 @@
+ window.onload = function() {
 
-//  pixi所需库
-var PIXI = require('pixi.js');
-
-//引入MainPlayer对象
-var MainPlayer = require("./modules/MainPlayer.js")
-
-var all  = document.getElementById("canvas");
+   
 
 
-// 定义canvas画布的宽高
-const WIDTH = window.SCREEN_WIDTH =  all.getBoundingClientRect().width/ window.pas.scaleNum;
-const HEIGHT = window.SCREEN_HEIGHT = all.getBoundingClientRect().height / window.pas.scaleNum;
+      var svgMorpheus = new SVGMorpheus('#icon'),
+          selIcon     = document.getElementById('selIcon'),
+          selEasing   = document.getElementById('selEasing'),
+          selDuration = document.getElementById('selDuration'),
+          selRotation = document.getElementById('selRotation'),
+          icons={
+            '3d_rotation':'3D Rotation',
+            "myIconSet":'myIconSet'
+          },
+          easings={
+            'circ-in': 'Circ In','circ-out': 'Circ Out','circ-in-out': 'Circ In/Out',
+            'cubic-in': 'Cubic In', 'cubic-out': 'Cubic Out', 'cubic-in-out': 'Cubic In/Out',
+            'elastic-in': 'Elastic In', 'elastic-out': 'Elastic Out', 'elastic-in-out': 'Elastic In/Out',
+            'expo-in': 'Expo In', 'expo-out': 'Expo Out', 'expo-in-out': 'Expo In/Out',
+            'linear': 'Linear',
+            'quad-in': 'Quad In', 'quad-out': 'Quad Out', 'quad-in-out': 'Quad In/Out',
+            'quart-in': 'Quart In', 'quart-out': 'Quart Out', 'quart-in-out': 'Quart In/Out',
+            'quint-in': 'Quint In', 'quint-out': 'Quint Out', 'quint-in-out': 'Quint In/Out',
+            'sine-in': 'Sine In','sine-out': 'Sine Out','sine-in-out': 'Sine In/Out'
+          },
+          durations=[250, 500, 750, 1000, 5000],
+          rotations={
+            'clock': 'Clockwise',
+            'counterclock': 'Counterclockwise',
+            'random': 'Random',
+            'none': 'None'
+          };
 
+      var key, i, len;
 
+      for(key in icons) {
+        selIcon.options[selIcon.options.length]=new Option(icons[key], key);
+      }
 
+      for(key in easings) {
+        selEasing.options[selEasing.options.length]=new Option(easings[key], key);
+      }
 
-function Main(){
-  //canvas 要渲染的舞台
-  this.stage = new PIXI.Container(0xF0F0F0);
+      for(i=0, len=durations.length;i<len;i++) {
+        selDuration.options[selDuration.options.length]=new Option(durations[i], durations[i]);
+      }
 
-  //canvas的renderer  相当于画布
-  this.renderer = new PIXI.CanvasRenderer(WIDTH, HEIGHT);
+      for(key in rotations) {
+        selRotation.options[selRotation.options.length]=new Option(rotations[key], key);
+      }
 
-  this.renderer.backgroundColor = 0xF0F0F0;
+      selIcon.selectedIndex=selIcon.options.length-1;
+      selEasing.selectedIndex=15;
+      selDuration.selectedIndex=2;
+      selRotation.selectedIndex=0;
 
-  //把canvas添加到dom中
-  all.appendChild(this.renderer.view);
+      function getSelValue(sel) {
+        return sel.options[sel.selectedIndex].value;
+      }
 
-
-  //开始加载所需文件
-  this.loadSpriteSheet();
-}
-
-
-Main.prototype.loadSpriteSheet = function(){
-  //图片的配置文件,
-  // 加载此文件后会读取与文件对应的图片
-  var assetsToLoad = ["img/players.json"];
-
-  //实例化一个加载器
-  var loader = new PIXI.loaders.Loader();
-
-  //将配置文件放入加载器中
-  loader.add(assetsToLoad);
-
-
-
-  //在加载过程中执行的函数
-  // loader.on("progress",this.loading);
-
-
-  //加载完成的回调函数
-  loader.once("complete",this.spriteSheetLoaded.bind(this));
-
-
-  //开始加载
-  loader.load();
-  
-}
-
-/**
- * [loading description]
- * @Author   yursile
- * @DateTime 2016-07-15T16:16:43+0800
- * @return   {[type]}                 [description]
- */     
-Main.prototype.loading = function(data){
-  console.log(data);
-}
-
-
-Main.prototype.spriteSheetLoaded = function(){
-  this.showNavigator();
-
-  // this.setupGame();
-
-}
-
-
-Main.prototype.showNavigator = function(){
-  // var textrue = PIXI.Texture.fromImage("main_player2");
-  // var player = new Player(textrue);
-
-
-  var mainPlayer = new MainPlayer();
-
-  this.stage.addChild(mainPlayer)
-  this.renderer.render(this.stage);
-  mainPlayer.toString();
-}
-window.main = new Main();
-
-
-
-
-
+      var timeoutInstance, manualChange=false;
+      function onIconChange() {
+        clearTimeout(timeoutInstance);
+        var valIcon=getSelValue(selIcon),
+            valEasing=getSelValue(selEasing),
+            valDuration=getSelValue(selDuration),
+            valRotation=getSelValue(selRotation);
+        svgMorpheus.to(valIcon, {duration: valDuration, easing: valEasing, rotation: valRotation},!manualChange?launchTimer:null);
+      }
+      function timerTick() {
+        var selIndex=selIcon.selectedIndex;
+        while(selIndex===selIcon.selectedIndex) {
+          selIndex=Math.round(Math.random()*(selIcon.options.length-1));
+        }
+        selIcon.selectedIndex=selIndex;
+        onIconChange();
+      }
+      function launchTimer() {
+        timeoutInstance=setTimeout(timerTick, 1000);
+      }
+      selIcon.addEventListener('change',onIconChange);
+      selIcon.addEventListener('click',function(){
+        clearTimeout(timeoutInstance);
+        manualChange=true;
+      });
+      launchTimer();
+    };

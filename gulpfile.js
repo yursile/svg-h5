@@ -12,8 +12,6 @@ var gulp = require('gulp'),
     LessPluginCleanCSS = require('less-plugin-clean-css'),
     LessPluginAutoPrefix = require('less-plugin-autoprefix'),
     connect = require('gulp-connect'),
-    // postcss = require('gulp-postcss'),
-    // cssgrace = require('cssgrace'),
     cleancss = new LessPluginCleanCSS({
       advanced: true
     }),
@@ -23,6 +21,9 @@ var gulp = require('gulp'),
 
 var postcss = require('gulp-postcss');
 var px2rem = require('postcss-px2rem');
+var svgmin = require('gulp-svgmin');
+var spritesmith = require('gulp.spritesmith');
+var merge = require('merge-stream');
  
 gulp.task('px', function() {
   var processors = [px2rem({remUnit: 100})];
@@ -31,8 +32,14 @@ gulp.task('px', function() {
     .pipe(gulp.dest('./public/rem/'));
 });
 
-var spritesmith = require('gulp.spritesmith');
-var merge = require('merge-stream');
+
+
+
+gulp.task('svg', function () {
+    return gulp.src('./app/svg/*.svg')
+        .pipe(svgmin())
+        .pipe(gulp.dest('./public/svg/'));
+});
 
 gulp.task('sprite', function () {
 

@@ -1,5 +1,5 @@
-# pixi-h5
-###主要处理pixi游戏，用ES6开发
+# svg-h5
+###主要处理svg，用ES6开发
 
 * **es6**
 * **pixi**

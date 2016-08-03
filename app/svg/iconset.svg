@@ -1,0 +1,25 @@
+
+<!-- The icon set is based on Material Design icons by Google (https://github.com/google/material-design-icons) -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg viewBox="0 0 300 300" style="background-color:#ffffff00" version="1.1"
+  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"
+>
+  <g id="3d_rotation" style="display:none" transform="scale(2)">
+    <path d="M 15 43 C 8.5 39.9 3.8 33.5 3.1 26 L 0.1 26 C 1.1 38.3 11.4 48 24 48 C 24.4 48 24.9 48 25.3 47.9 L 17.7 40.3 L 15 43 L 15 43 Z" fill="#336699"/>
+    <path d="M 32 26 C 32 27.1 31.1 28 30 28 L 28 28 L 28 20 L 30 20 C 31.1 20 32 20.9 32 22 L 32 26 M 30 16 L 24 16 L 24 32 L 30 32 C 33.3 32 36 29.3 36 26 L 36 22 C 36 18.7 33.3 16 30 16 L 30 16 Z" fill="#336699"/>
+    <path d="M 22 28 L 22 26 C 22 24.9 21.1 24 20 24 C 21.1 24 22 23.1 22 22 L 22 20 C 22 17.8 20.2 16 18 16 L 12 16 L 12 20 L 18 20 L 18 22 L 14 22 L 14 26 L 18 26 L 18 27.9 L 18 28 L 18 28 L 18 28 L 18 28 L 12 28 L 12 32 L 18 32 C 20.2 32 22 30.2 22 28 L 22 28 Z" fill="#336699"/>
+    <path d="M 24 0 C 23.6 0 23.1 0 22.7 0.1 L 30.3 7.7 L 33 5 C 39.5 8.1 44.2 14.4 44.9 22 L 47.9 22 C 46.9 9.7 36.6 0 24 0 L 24 0 Z" fill="#336699"/>
+  </g>
+
+    <g id="myIconSet">
+    
+    <path fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+      M83.203,2.167c9.211,0,15.5,0,15.5,0c4.736,0,8.578,3.84,8.578,8.578v64.342c0,4.738-3.842,8.578-8.578,8.578H10.769
+      c-4.738,0-8.58-3.84-8.58-8.578V10.746c0-4.738,3.842-8.578,8.58-8.578h55.762"/>
+    <path fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" d="M84.193,23.492h44.4
+      c3.063,0,5.551,2.484,5.551,5.549v27.75c0,3.066-2.486,5.551-5.551,5.551h-44.4c-3.063,0-5.549-2.482-5.549-5.551v-27.75
+      C78.644,25.976,81.128,23.492,84.193,23.492z"/>
+    <path d="M93.451,36.066c3.77,0,6.824,3.055,6.824,6.822c0,3.77-3.057,6.824-6.824,6.824c-3.766,0-6.822-3.055-6.822-6.824
+      C86.628,39.121,89.683,36.066,93.451,36.066z"/>
+  </g>
+</svg>

@@ -32,52 +32,120 @@
     }
 </script>
 <body ontouchmove="event.preventDefault();" >
-  <!-- loading -->
-<!--   <div class="loading">
-    <div class="loading_player"></div>
-    <div class="progress-num">0%</div>
-  </div> -->
 
-  <div class="hello">
-    hello everyone!
-  </div>
-  <div class="sohu"></div>
-  <div class="canvas" style="width:100%;height:100%" id="canvas"></div>
-
-
-  <script type="text/javascript">
-    /**
-    * 进入界面前预加载
-    */
-
-    // new pageUtil(".loading").response();
-    // var loader = new resLoader({
-    //   resources: [
-    //     './img/players.png'
-    //   ],
-    //   onStart: function(total) {},
-    //   onProgress: function(current, total) {
-    //     var percent = parseInt(current / total * 100) + '%';
-    //     document.querySelector('.progress-num').innerHTML = percent;
-      
-    //   },
-    //   onComplete: function(total) {
-        
-    //     document.querySelector('.loading').style.display = "none";
-    //   }
-    // });
-    // loader.start();
-    // 
-    // 
-   
-
-    window.pas = new pageUtil(".canvas");
-    pas.response();
+  <object data="./svg/iconset.svg" type="image/svg+xml" id="icon"></object>
+  <div id="options" style="display:none">
+    <div class="option">
+      <label for="selIcon">Icon:</label>
+      <select id="selIcon"></select>
+    </div>
+    <div class="option">
+      <label for="selEasing">Easing:</label>
+      <select id="selEasing"></select>
+    </div>
+    <div class="option">
+      <label for="selDuration">Duration:</label>
+      <select id="selDuration"></select>
+    </div>
+    <div class="option">
+      <label for="selRotation">Rotation:</label>
+      <select id="selRotation"></select>
+    </div>
+  </div>  
 
 
-  </script>
+
 </body>
 
+<script type="text/javascript" src="./js/svg-morpheus.js"></script>
 
-<script type="text/javascript" src="./js/bundle.js"></script>
+ <script type="text/javascript">
+    window.onload = function() {
+
+   
+
+
+      var svgMorpheus = new SVGMorpheus('#icon'),
+          selIcon     = document.getElementById('selIcon'),
+          selEasing   = document.getElementById('selEasing'),
+          selDuration = document.getElementById('selDuration'),
+          selRotation = document.getElementById('selRotation'),
+          icons={
+            '3d_rotation':'3D Rotation',
+            "myIconSet":'myIconSet'
+          },
+          easings={
+            'circ-in': 'Circ In','circ-out': 'Circ Out','circ-in-out': 'Circ In/Out',
+            'cubic-in': 'Cubic In', 'cubic-out': 'Cubic Out', 'cubic-in-out': 'Cubic In/Out',
+            'elastic-in': 'Elastic In', 'elastic-out': 'Elastic Out', 'elastic-in-out': 'Elastic In/Out',
+            'expo-in': 'Expo In', 'expo-out': 'Expo Out', 'expo-in-out': 'Expo In/Out',
+            'linear': 'Linear',
+            'quad-in': 'Quad In', 'quad-out': 'Quad Out', 'quad-in-out': 'Quad In/Out',
+            'quart-in': 'Quart In', 'quart-out': 'Quart Out', 'quart-in-out': 'Quart In/Out',
+            'quint-in': 'Quint In', 'quint-out': 'Quint Out', 'quint-in-out': 'Quint In/Out',
+            'sine-in': 'Sine In','sine-out': 'Sine Out','sine-in-out': 'Sine In/Out'
+          },
+          durations=[250, 500, 750, 1000, 5000],
+          rotations={
+            'clock': 'Clockwise',
+            'counterclock': 'Counterclockwise',
+            'random': 'Random',
+            'none': 'None'
+          };
+
+      var key, i, len;
+
+      for(key in icons) {
+        selIcon.options[selIcon.options.length]=new Option(icons[key], key);
+      }
+
+      for(key in easings) {
+        selEasing.options[selEasing.options.length]=new Option(easings[key], key);
+      }
+
+      for(i=0, len=durations.length;i<len;i++) {
+        selDuration.options[selDuration.options.length]=new Option(durations[i], durations[i]);
+      }
+
+      for(key in rotations) {
+        selRotation.options[selRotation.options.length]=new Option(rotations[key], key);
+      }
+
+      selIcon.selectedIndex=selIcon.options.length-1;
+      selEasing.selectedIndex=15;
+      selDuration.selectedIndex=2;
+      selRotation.selectedIndex=0;
+
+      function getSelValue(sel) {
+        return sel.options[sel.selectedIndex].value;
+      }
+
+      var timeoutInstance, manualChange=false;
+      function onIconChange() {
+        clearTimeout(timeoutInstance);
+        var valIcon=getSelValue(selIcon),
+            valEasing=getSelValue(selEasing),
+            valDuration=getSelValue(selDuration),
+            valRotation=getSelValue(selRotation);
+        svgMorpheus.to(valIcon, {duration: valDuration, easing: valEasing, rotation: valRotation},!manualChange?launchTimer:null);
+      }
+      function timerTick() {
+        var selIndex=selIcon.selectedIndex;
+        while(selIndex===selIcon.selectedIndex) {
+          selIndex=Math.round(Math.random()*(selIcon.options.length-1));
+        }
+        selIcon.selectedIndex=selIndex;
+        onIconChange();
+      }
+      function launchTimer() {
+        timeoutInstance=setTimeout(timerTick, 1000);
+      }
+      selIcon.addEventListener('change',onIconChange);
+      selIcon.addEventListener('click',function(){
+        clearTimeout(timeoutInstance);
+        manualChange=true;
+      });
+      launchTimer();
+    };
+  </script>
 </html>

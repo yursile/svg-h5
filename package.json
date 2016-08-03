@@ -1,5 +1,5 @@
 {
-  "name": "h5-pixi",
+  "name": "h5-svg",
   "version": "1.0.0",
   "description": "a h5 template integrated with es6,pixi,and so on",
   "main": "index.js",
@@ -20,6 +20,7 @@
     "gulp-less": "^3.0.5",
     "gulp-postcss": "^6.1.1",
     "gulp-rename": "^1.2.2",
+    "gulp-svgmin": "^1.2.2",
     "gulp-uglyfly": "^1.4.2",
     "gulp.spritesmith": "^6.2.1",
     "less-plugin-autoprefix": "^1.5.1",
@@ -28,8 +29,10 @@
     "normalize.css": "^3.0.3",
     "pixi.js": "^3.0.11",
     "postcss-px2rem": "^0.3.0",
+    "svg-morpheus": "^0.3.0",
     "tween.js": "^16.3.4",
-    "vinyl-source-stream": "^1.1.0"
+    "vinyl-source-stream": "^1.1.0",
+    "vivus": "^0.3.1"
   },
   "dependencies": {
     "zepto": "^1.0.1"
