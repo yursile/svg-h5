@@ -24,6 +24,8 @@ var px2rem = require('postcss-px2rem');
 var svgmin = require('gulp-svgmin');
 var spritesmith = require('gulp.spritesmith');
 var merge = require('merge-stream');
+var fontSpider = require( 'gulp-font-spider' );
+var clean = require('gulp-clean');
  
 gulp.task('px', function() {
   var processors = [px2rem({remUnit: 100})];
@@ -39,6 +41,16 @@ gulp.task('svg', function () {
     return gulp.src('./app/svg/*.svg')
         .pipe(svgmin())
         .pipe(gulp.dest('./public/svg/'));
+});
+
+// gulp.task('respider', function () {
+//     return gulp.src('app/tmp', {read: false})
+//         .pipe(clean());
+// });
+
+gulp.task('fontspider', function() {
+    return gulp.src('./public/index.html')
+        .pipe(fontSpider());
 });
 
 gulp.task('sprite', function () {

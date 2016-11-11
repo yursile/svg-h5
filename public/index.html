@@ -6,6 +6,26 @@
   <link rel="stylesheet" type="text/css" href="./rem/style.css">
   <title>h5_pixi</title>
 
+  <style>
+    /*声明 WebFont*/
+    @font-face {
+      font-family: 'MFYUEYUAN';
+      src: url('./font/MFYUEYUAN.eot');
+      src:
+        url('./font/MFYUEYUAN.eot?#font-spider') format('embedded-opentype'),
+        url('./font/MFYUEYUAN.woff') format('woff'),
+        url('./font/MFYUEYUAN.ttf') format('truetype'),
+        url('./font/MFYUEYUAN.svg') format('svg');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    /*使用选择器指定字体*/
+    .MFYUEYUAN {
+        font-family: 'MFYUEYUAN';
+    }
+  </style>
+
 </head>
 <!-- 预加载所需库 -->
 <!-- <script src="http://news.sohu.com/upload/yifengjiashuzzx/js/preload.js"></script> -->
@@ -32,6 +52,10 @@
     }
 </script>
 <body ontouchmove="event.preventDefault();" >
+  <div class="font">
+    <h3 class="MFYUEYUAN"> 什么鬼</h3>
+    <h3> 什么鬼</h3>
+  </div>
 
   <object data="./svg/iconset.svg" type="image/svg+xml" id="icon"></object>
   <div id="options" style="display:none">

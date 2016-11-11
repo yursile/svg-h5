@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>text</title>
+	<style type="text/css">
+		html,body{
+			padding: 0;
+			margin:0;
+			width: 100%;
+			height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<svg width="100%" height="100%" viewBox="0 0 800 600"  preserveAspect="xMidYMid slice">
+		<defs>
+			<path id="path1"  d="M 100 200 
+             C 200 100 300   0 400 100
+             C 500 200 600 300 500 200
+             C 400 100 900 100 500 100
+			 C 500 100 200 200 100 100
+			 L 500 100
+             "></path>
+
+		</defs>
+
+		<text id="text"  dx="20"  style="font-size:30px" >
+			 <textPath id="textP" xlink:href="#path1" startOffset="0">ABCDEFGHIJKLMNOPQRSTUVWXYZ</textPath>
+
+		</text>
+	</svg>
+
+
+	<script type="text/javascript">
+	// 	var SVG_NS = "http://www.w3.org/2000/svg";
+	// 	var s = 200;
+	// 	var w = 0.02;
+	// 	var OT = -900;
+
+	// 	var $ = function(arg){
+	// 		return document.querySelectorAll(arg)[0];
+	// 	}
+
+	// 	var TEXT = $("#text");
+	// 	var dys = [];
+	// 	var dxs = [];
+
+
+	// 	for(var i=0;i<26;i++){
+				
+	// 			dxs.push(10);
+	// 		}
+
+	// 	function arrange(t){
+	// 		dys = [];
+	// 		var cy = 0;
+	// 		var ly = 0;
+
+	// 		for(var i=0;i<26;i++){
+	// 			ly = -s * Math.sin( Math.PI/8 * i +t);
+	// 			dys.push(ly-cy);
+	// 			cy = ly;
+	// 			// dys.push(10);
+	// 		}
+
+
+
+			
+	// 	}
+
+	// 	function render(t){
+	// 		TEXT.setAttribute("dy",dys.join(" "));	
+		
+	// 		TEXT.setAttribute("x",t*100+OT);	
+	// 	}
+
+
+
+	// var t = 0;
+
+	// TEXT.setAttribute("dx",dxs.join(" "));
+
+	// 	function frame() {
+	// 		t += 0.1;
+	// 		// s--;
+	// 		s-=3;
+	// 		if(s<0) {cancelRequestAnimation(id);}
+	// 		arrange(t);
+	// 		render(t);
+	// 		var id = requestAnimationFrame(frame);
+	// 	}
+
+	// 	frame();
+	// 	
+	// 	
+	// 	
+		var textP = document.querySelectorAll("#textP")[0];
+		var t = -300;
+		function frame() {
+			t+=10;
+
+			
+			textP.setAttribute("startOffset",t);
+			var id = requestAnimationFrame(frame);
+
+				if(t>1500) {
+				cancelAnimationFrame(id)
+			}
+		}
+
+		frame();
+
+	</script>
+</body>
+</html>

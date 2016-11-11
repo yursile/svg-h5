@@ -6,6 +6,8 @@
 * **less**
 * **sprite**
 * **rem**
+* **fontspider**
+* **svg**
 * and so so on
 
 ****
@@ -74,7 +76,16 @@ gulp中配置:
 
 
 **rem使用**
-*gulp rem 会在public下生成rem文件夹，html引入这个样式
+* gulp rem 会在public下生成rem文件夹，html引入这个样式
+
+
+
+**fontspider**
+* 集成fontspider,在确定好文案的情况下*gulp fontspider*
+* 如果生成后，文案修改，把.fontspider文件夹下的文件拷贝出来
+
+**svg**
+* *gulp svgmin* 处理svg压缩
 
 
 

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>vivus</title>
+
+	<style type="text/css">
+		#my-svg {
+	    width: 100%;
+	    stroke-width: 4;
+
+	    fill: none;
+	    stroke: currentColor;
+
+	}
+
+	#newl{
+		position:absolute;
+		left: 300px;
+	}
+	</style>
+</head>
+<body>
+	<svg width="100%" height="400">
+		  <path id="path1" d="M100,250 C 100,50 400,50 400,250L400,0l300,100l-600,200"
+        fill="none" stroke="blue" stroke-width="7.06"  />
+		
+		  <image x="0" y="0" width="20" height="20"
+ 		  xlink:href="qq.jpeg">
+
+			 <animateMotion dur="6s" repeatCount="indefinite" rotate="auto" >
+		       <mpath xlink:href="#path1"/>
+		    </animateMotion>
+ 		</image>
+	</svg>
+
+<svg version="1.1" id="newl" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="136.333px" height="85.833px" viewBox="0 0 136.333 85.833" enable-background="new 0 0 136.333 85.833"
+	 xml:space="preserve" transform="scale(2)">
+
+	<g id="myIconSet">
+		<path fill="none" stroke="#000000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="
+			M83.203,2.167c9.211,0,15.5,0,15.5,0c4.736,0,8.578,3.84,8.578,8.578v64.342c0,4.738-3.842,8.578-8.578,8.578H10.769
+			c-4.738,0-8.58-3.84-8.58-8.578V10.746c0-4.738,3.842-8.578,8.58-8.578h55.762"/>
+		<path fill="none" stroke="#000000" stroke-width="4" stroke-miterlimit="10" d="M84.193,23.492h44.4
+			c3.063,0,5.551,2.484,5.551,5.549v27.75c0,3.066-2.486,5.551-5.551,5.551h-44.4c-3.063,0-5.549-2.482-5.549-5.551v-27.75
+			C78.644,25.976,81.128,23.492,84.193,23.492z"/>
+		<path d="M93.451,36.066c3.77,0,6.824,3.055,6.824,6.822c0,3.77-3.057,6.824-6.824,6.824c-3.766,0-6.822-3.055-6.822-6.824
+			C86.628,39.121,89.683,36.066,93.451,36.066z"/>
+	</g>
+
+	
+
+	
+
+</svg>
+
+
+
+
+
+	<script type="text/javascript" src="./js/vivus.min.js"></script>
+	<script type="text/javascript">
+	 	var v = new Vivus('newl', {duration: 2000,start:"manual"});
+	 	// v.stop();
+	 	// v.setFrameProgress(0.5);
+	 	t=0;
+
+	 	function render(){
+	 		t+=0.005
+	 		v.setFrameProgress(t);
+	 		requestAnimationFrame(render);
+	 	}
+	 	render();
+	</script>
+
+</body>
+</html>
